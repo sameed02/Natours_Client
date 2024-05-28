@@ -2,17 +2,15 @@ import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
 :root {
-      --color-grey-0: #fff;
-      --color-grey-50: #f9fafb;
-      --color-grey-100: #f3f4f6;
-      --color-grey-200: #e5e7eb;
-      --color-grey-300: #d1d5db;
-      --color-grey-400: #9ca3af;
-      --color-grey-500: #6b7280;
-      --color-grey-600: #4b5563;
-      --color-grey-700: #374151;
-      --color-grey-800: #1f2937;
-      --color-grey-900: #111827;
+   
+      --color-grey: #777;
+
+      --color-light-green: #7ed56f;
+      --color-medium-green: #55c57a;
+      --color-dark-green: #28b485;
+
+      --gradient-light-green: rgba(126,213,111,0.8);
+      --gradient-dark-green: rgba(40,180,131,0.8);
   }
 
   * {
@@ -22,9 +20,12 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    font-family: 'Arial', sans-serif;
-    background-color: var(--color-grey-50);
-    
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--color-grey);
+    padding: 30px;
   }
 
   h1, h2, h3, h4, h5, h6 {

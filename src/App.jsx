@@ -1,11 +1,8 @@
-import {
-  Navigate,
-  RouterProvider,
-  createBrowserRouter,
-} from "react-router-dom";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import AppLayout from "./ui/AppLayout.jsx";
 import Tours from "./pages/Tours.jsx";
 import PageNotFound from "./ui/PageNotFound.jsx";
+import Hero from "./ui/Hero.jsx";
 
 const router = createBrowserRouter([
   {
@@ -13,7 +10,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Navigate to="/tours" replace />,
+        element: <Hero />,
       },
       {
         path: "/tours",
@@ -31,7 +28,7 @@ const router = createBrowserRouter([
 function App() {
   return (
     <>
-      <RouterProvider router={router} />;
+      <RouterProvider router={router} />
     </>
   );
 }
