@@ -1,0 +1,8 @@
+------------------------ Notes ------------------------
+
+
+
+------------------------ Things i've used ------------------------
+
+1.Styled Component Library
+2.React Router Dom
