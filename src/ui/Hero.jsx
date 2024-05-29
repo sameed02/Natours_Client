@@ -1,6 +1,7 @@
 import styled, { keyframes } from "styled-components";
 import heroImage from "../assets/img/hero.jpg";
 import logoWhite from "/public/logoWhite.png";
+import { Link } from "react-router-dom";
 
 /*  -------------- Animations -------------- */
 const moveInLeft = keyframes`
@@ -28,6 +29,18 @@ const moveInRight = keyframes`
 
   80% {
     transform: translateX(-10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+`;
+
+const moveInBottom = keyframes`
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
   }
 
   100% {
@@ -70,6 +83,7 @@ const HeroBox = styled.div`
   position: absolute;
   top: 40%;
   left: 50%; // this top and left are in relation to its parent because of absolute positions and we have set its parent element as position: relative
+  text-align: center;
   transform: translate(
     -50%,
     -50%
@@ -79,6 +93,7 @@ const HeroBox = styled.div`
 const HeroHeading = styled.h1`
   color: var(--color-white);
   text-transform: uppercase;
+  margin-bottom: 96px;
 `;
 
 const HeroHeadingPrimary = styled.span`
@@ -98,6 +113,48 @@ const HeroHeadingSub = styled.span`
   animation: ${moveInRight} 1s ease-out;
 `;
 
+const StyledLink = styled(Link)`
+  display: inline-block;
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 15px 40px;
+  background-color: var(--color-white);
+  color: var(--color-grey);
+  border-radius: 100px;
+  transition: all 0.2s;
+  position: relative;
+  animation: ${moveInBottom} 0.5s ease-out 0.75;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); // 1st value: offset in X direction, 2nd: offset in Y direction, 3rd: Blur, 4th: color
+  }
+
+  &:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  &::after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 100px;
+    background-color: var(--color-white);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all 0.4s;
+  }
+
+  &:hover::after {
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0;
+  }
+`;
+
 function Hero() {
   return (
     <StyledHero>
@@ -110,6 +167,8 @@ function Hero() {
           <HeroHeadingPrimary>Outdoors</HeroHeadingPrimary>
           <HeroHeadingSub>is where life happens</HeroHeadingSub>
         </HeroHeading>
+
+        <StyledLink to="/tours">Discover our tours</StyledLink>
       </HeroBox>
     </StyledHero>
   );
