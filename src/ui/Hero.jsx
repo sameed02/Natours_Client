@@ -1,7 +1,42 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import heroImage from "../assets/img/hero.jpg";
 import logoWhite from "/public/logoWhite.png";
 
+/*  -------------- Animations -------------- */
+const moveInLeft = keyframes`
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+
+  80% {
+    transform: translateX(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+ 
+`;
+
+const moveInRight = keyframes`
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+
+  80% {
+    transform: translateX(-10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+`;
+
+/*  -------------- Styles -------------- */
 const StyledHero = styled.div`
   position: relative;
   height: 95vh;
@@ -52,6 +87,7 @@ const HeroHeadingPrimary = styled.span`
   font-weight: 700;
   letter-spacing: 35px;
   margin-right: -35px; // letter-spacing property also adds that space AFTER the last letter, So, in hero box we're centering the box, but not the text, because it has an extra 35px to the right, thus being the text more to the left side than it should. so we are adding negative margin to center the text
+  animation: ${moveInLeft} 1s ease-out;
 `;
 const HeroHeadingSub = styled.span`
   display: block;
@@ -59,6 +95,7 @@ const HeroHeadingSub = styled.span`
   font-weight: 400;
   letter-spacing: 17.4px;
   margin-right: -17.4px;
+  animation: ${moveInRight} 1s ease-out;
 `;
 
 function Hero() {
