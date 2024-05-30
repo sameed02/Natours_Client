@@ -98,7 +98,7 @@ const HeroHeading = styled.h1`
 
 const HeroHeadingPrimary = styled.span`
   display: block;
-  font-size: 60px;
+  font-size: 6rem;
   font-weight: 700;
   letter-spacing: 35px;
   margin-right: -35px; // letter-spacing property also adds that space AFTER the last letter, So, in hero box we're centering the box, but not the text, because it has an extra 35px to the right, thus being the text more to the left side than it should. so we are adding negative margin to center the text
@@ -106,7 +106,7 @@ const HeroHeadingPrimary = styled.span`
 `;
 const HeroHeadingSub = styled.span`
   display: block;
-  font-size: 20px;
+  font-size: 2rem;
   font-weight: 400;
   letter-spacing: 17.4px;
   margin-right: -17.4px;
@@ -119,7 +119,7 @@ const StyledLink = styled(Link)`
   text-transform: uppercase;
   padding: 15px 40px;
   background-color: var(--color-white);
-  color: var(--color-grey);
+  color: var(--color-grey-2);
   border-radius: 100px;
   transition: all 0.2s;
   position: relative;
