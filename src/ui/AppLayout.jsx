@@ -5,8 +5,7 @@ import Hero from "./Hero.jsx";
 import styled from "styled-components";
 
 const StyledContainer = styled.div`
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
   background-color: var(--color-grey-1);
   /* box-shadow: var(--shadow-dark); */
   min-height: 50rem;

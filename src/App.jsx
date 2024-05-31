@@ -3,6 +3,7 @@ import AppLayout from "./ui/AppLayout.jsx";
 import Tours from "./pages/Tours.jsx";
 import PageNotFound from "./ui/PageNotFound.jsx";
 import Hero from "./ui/Hero.jsx";
+import Settings from "./pages/Settings.jsx";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,11 @@ const router = createBrowserRouter([
       {
         path: "/tours",
         element: <Tours />,
+      },
+
+      {
+        path: "/settings",
+        element: <Settings />,
       },
     ],
   },
