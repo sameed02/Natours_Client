@@ -1,6 +1,18 @@
 import { HiOutlineCog, HiOutlineMap } from "react-icons/hi";
 import { NavLink } from "react-router-dom";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+const hoverAnimation = keyframes`
+  0%{
+    width: 0.4rem;
+  }
+
+  100% {
+    width: calc(
+      100% + 16rem
+    );
+  }
+`;
 
 const NavList = styled.ul`
   color: var(--color-grey-2);
@@ -19,18 +31,16 @@ const StyledNavLink = styled(NavLink)`
     align-items: center;
     justify-content: start;
     gap: 1.2rem;
-
+    color: var(--color-grey-3);
     font-size: 1.6rem;
-    font-weight: 500;
+    font-weight: 700;
     text-transform: uppercase;
     padding: 1.2rem 0;
     transition: all 0.3s;
     text-decoration: none;
   }
 
-  &:hover,
   &.active {
-    font-weight: 700;
     color: var(--color-medium-green);
   }
 
@@ -42,9 +52,10 @@ const StyledNavLink = styled(NavLink)`
     left: -8rem;
     top: 0;
     bottom: 0;
+    height: 100%;
     width: 0.4rem;
-    background-color: var(--color-white);
     background-image: linear-gradient(to right bottom, #7dd56f, #28b487);
+    transform: scaleY(1);
     transition: all 0.3s;
   }
 
@@ -54,22 +65,43 @@ const StyledNavLink = styled(NavLink)`
     left: -8rem;
     top: 0;
     bottom: 0;
-    width: 0.4rem;
+    height: 100%;
     background-image: linear-gradient(to right bottom, #7dd56f, #28b487);
+    transform: scaleY(1);
+    width: calc(
+      100% + 16rem
+    ); // to transition my psuedo element with width of my relative parent i also have to add padding here that 16rem is padding here i applied in parent to this psueudo element
     transition: all 0.3s;
+    animation: ${hoverAnimation} 0.3s ease-in-out;
+  }
+
+  & span {
+    z-index: 101;
+    transition: all 0.3s;
+  }
+
+  &:hover span {
+    color: var(--color-grey-1);
   }
 
   & svg {
     width: 2.4rem;
     height: 2.4rem;
-    transition: all 0.3s;
     color: var(--color-grey-3);
+    transition: all 0.3s;
+    z-index: 101;
   }
 
-  &:hover svg,
+  &:hover svg {
+    color: var(--color-grey-1);
+  }
+
   &.active svg {
     color: var(--color-medium-green);
-    transition: all 0.3s;
+  }
+
+  &.active:hover svg {
+    color: var(--color-grey-1);
   }
 `;
 
