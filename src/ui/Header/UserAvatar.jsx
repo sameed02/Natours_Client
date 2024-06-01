@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import avatar from "../assets/img/avatar.jpg";
+import avatar from "../../assets/img/avatar.jpg";
 
 const StyledUserAvatar = styled.div`
   display: flex;

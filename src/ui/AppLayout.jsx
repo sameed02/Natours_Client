@@ -1,6 +1,6 @@
 import { Outlet, useLocation } from "react-router-dom";
-import Header from "./Header.jsx";
-import Sidebar from "./Sidebar.jsx";
+import Header from "./Header/Header.jsx";
+import Sidebar from "./SideNav/Sidebar.jsx";
 import Hero from "./Hero.jsx";
 import styled from "styled-components";
 
@@ -18,8 +18,9 @@ const StyledMain = styled.main`
 `;
 
 const StyledOutletContainer = styled.div`
-  background-color: purple;
+  background-color: var(--color-white);
   flex-grow: 1;
+  height: 80rem;
 `;
 
 function AppLayout() {

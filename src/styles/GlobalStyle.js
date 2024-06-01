@@ -12,6 +12,9 @@ const GlobalStyle = createGlobalStyle`
       --color-medium-green: #55c57a;
       --color-dark-green: #28b485;
       
+      --light-gradient-light-green: rgba(85,197,122,0.7);
+      --light-gradient-dark-green: rgba(40,180,133,0.7);
+
       --gradient-light-green: rgba(85,197,122,0.8);
       --gradient-dark-green: rgba(40,180,133,0.8);
 

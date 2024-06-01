@@ -72,7 +72,7 @@ const StyledNavLink = styled(NavLink)`
       100% + 16rem
     ); // to transition my psuedo element with width of my relative parent i also have to add padding here that 16rem is padding here i applied in parent to this psueudo element
     transition: all 0.3s;
-    animation: ${hoverAnimation} 0.3s ease-in-out;
+    animation: ${hoverAnimation} 0.5s ease-out;
   }
 
   & span {
