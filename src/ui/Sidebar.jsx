@@ -8,7 +8,7 @@ const NavList = styled.ul`
   flex-direction: column;
   gap: 1rem;
   flex: 0 0 18%;
-  padding: 2rem 0;
+  padding: 2rem 8rem;
 `;
 
 const StyledNavLink = styled(NavLink)`
@@ -23,7 +23,7 @@ const StyledNavLink = styled(NavLink)`
     font-size: 1.6rem;
     font-weight: 500;
     text-transform: uppercase;
-    padding: 1.2rem 2.4rem;
+    padding: 1.2rem 0;
     transition: all 0.3s;
     text-decoration: none;
   }
@@ -39,7 +39,7 @@ const StyledNavLink = styled(NavLink)`
   &.active::before {
     content: "";
     position: absolute;
-    left: 0;
+    left: -8rem;
     top: 0;
     bottom: 0;
     width: 0.4rem;
@@ -51,7 +51,7 @@ const StyledNavLink = styled(NavLink)`
   &:hover::before {
     content: "";
     position: absolute;
-    left: 0;
+    left: -8rem;
     top: 0;
     bottom: 0;
     width: 0.4rem;
