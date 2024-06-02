@@ -2,7 +2,15 @@ import styled from "styled-components";
 import TourSummary from "../ui/Tours/TourSummary.jsx";
 import TourFooter from "../ui/Tours/TourFooter.jsx";
 import TourHeader from "../ui/Tours/TourHeader.jsx";
-import PageHeader from "../ui/Tours/PageHeader.jsx";
+import Pagination from "../ui/Pagination.jsx";
+import PageHeader from "../ui/PageHeader.jsx";
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+`;
 
 const TourCard = styled.div`
   display: flex;
@@ -23,7 +31,7 @@ function Tours() {
   `;
 
   return (
-    <>
+    <Container>
       <PageHeader />
       <TourContainer>
         <TourCard>
@@ -37,18 +45,21 @@ function Tours() {
           <TourSummary />
           <TourFooter />
         </TourCard>
+
         <TourCard>
           <TourHeader />
           <TourSummary />
           <TourFooter />
         </TourCard>
+
         <TourCard>
           <TourHeader />
           <TourSummary />
           <TourFooter />
         </TourCard>
       </TourContainer>
-    </>
+      <Pagination />
+    </Container>
   );
 }
 

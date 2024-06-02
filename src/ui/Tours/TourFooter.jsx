@@ -28,6 +28,10 @@ const FooterBtn = styled(Link)`
     border-radius: 10rem;
     text-transform: uppercase;
   }
+
+  &:hover {
+    background-color: var(--color-dark-green);
+  }
 `;
 
 function TourFooter() {

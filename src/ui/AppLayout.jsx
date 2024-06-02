@@ -6,21 +6,25 @@ import styled from "styled-components";
 
 const StyledContainer = styled.div`
   margin: 0 auto;
-  background-color: var(--color-grey-1);
-  /* box-shadow: var(--shadow-dark); */
-  min-height: 50rem;
   display: flex;
   flex-direction: column;
+  height: calc(100vh - 6rem);
 `;
 
 const StyledMain = styled.main`
   display: flex;
+  flex-grow: 1;
+  min-height: 0;
 `;
 
 const StyledOutletContainer = styled.div`
+  display: flex;
+  flex-direction: column;
   background-color: var(--color-white);
   flex-grow: 1;
-  height: 80rem;
+  overflow: auto;
+  /* justify-content: space-between; */
+  padding: 0 1rem;
 `;
 
 function AppLayout() {

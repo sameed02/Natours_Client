@@ -2,7 +2,30 @@
 
 1. Remember that the H one is the single most important heading on the page which is important for Google or for any other search engine to figure out what our webpage is all about. And so it's important that we basically put the title of our webpage in there. Now we could only just put outdoors in there, so make this the H one, and then for example, make an H two here for the secondary header, and put this is where life happens in there. But that's not what we want, because we don't want our primary text or title of the website to say just outdoors. We want all of this text. And so we must somehow divide this text. So, what are we going to do? We are going to use this span element. And this span element is perfect for this because remember that a span is simply to style some text different. And so we can just put two span elements in here, one for each part. One for the top, and one for the bottom. So span, class heading, primary, main. And then the same for the part on the bottom.
 
+
+2. so suppose i have 1 main div which sets main axis verticle, then its child 2nd main which is flex container on its own and its main axis is horizontal, now the 2nd main has two children divs does that mean both of these divs will expand horizontallty and vertically because their immediate parent axis is horizontal but their parent is a children of main div whose axis is vertical?
+
+Yes, that's correct. Let's break down the scenario:
+
+1. **Main Axis of the Parent Flex Container (First `main`):**
+   - The first `main` sets its main axis to be vertical (along the column), as you mentioned.
+
+2. **Expansion Direction of Flex Items (Second `main`):**
+   - The second `main` is a flex container on its own and has its main axis set to be horizontal (along the row).
+   - Since the second `main`'s main axis is horizontal, its children will expand horizontally by default.
+
+3. **Expansion of Children (Divs inside Second `main`):**
+   - The divs inside the second `main` will indeed expand horizontally because the second `main`'s main axis is horizontal.
+   - However, since the second `main` itself is a child of the first `main`, and the first `main`'s main axis is vertical, the divs inside the second `main` will also expand vertically to fill the available space along the vertical axis set by the first `main`.
+
+So, in summary:
+
+- The divs inside the second `main` will expand both horizontally and vertically:
+  - Horizontally due to the second `main`'s main axis being horizontal.
+  - Vertically due to the first `main`'s main axis being vertical, which affects the expansion of its child, the second `main`, along the vertical axis.
+
 ------------------------ Things i've used ------------------------
 
 1.Styled Component Library
 2.React Router Dom
+3.React Icons
