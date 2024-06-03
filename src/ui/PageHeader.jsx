@@ -11,13 +11,13 @@ const PageContainer = styled.div`
 const Select = styled.select`
   padding: 0.8rem 1.2rem;
   font-size: 1.4rem;
-  font-weight: 700;
+  font-weight: 400;
   color: var(--color-grey-2);
-  border: 2px solid var(--color-medium-green);
+  border: 1px solid var(--color-medium-green);
   outline: none;
 
   &:focus {
-    border-color: var(--color-dark-green);
+    border: 2px solid var(--color-medium-green);
   }
 `;
 

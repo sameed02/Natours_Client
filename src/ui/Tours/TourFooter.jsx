@@ -13,6 +13,7 @@ const StyledFooter = styled.div`
 
 const FooterDetails = styled.div`
   padding: 1rem;
+  font-size: 1.3rem;
 `;
 
 const FooterBtn = styled(Link)`
@@ -34,15 +35,15 @@ const FooterBtn = styled(Link)`
   }
 `;
 
-function TourFooter() {
+function TourFooter({ price, ratingsAverage, ratingsQuantity }) {
   return (
     <StyledFooter>
       <FooterDetails>
         <p>
-          <strong>$497</strong> per person
+          <strong>${price}</strong> per person
         </p>
         <p>
-          <strong>4.1</strong> rating (8)
+          <strong>{ratingsAverage}</strong> rating ({ratingsQuantity})
         </p>
       </FooterDetails>
       <FooterBtn>Details</FooterBtn>

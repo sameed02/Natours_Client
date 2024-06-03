@@ -1,9 +1,8 @@
 import styled from "styled-components";
-import TourSummary from "../ui/Tours/TourSummary.jsx";
-import TourFooter from "../ui/Tours/TourFooter.jsx";
-import TourHeader from "../ui/Tours/TourHeader.jsx";
 import Pagination from "../ui/Pagination.jsx";
 import PageHeader from "../ui/PageHeader.jsx";
+import useFetchTours from "../ui/Tours/useFetchTours.js";
+import TourCard from "../ui/Tours/TourCard.jsx";
 
 const Container = styled.div`
   display: flex;
@@ -12,51 +11,32 @@ const Container = styled.div`
   height: 100%;
 `;
 
-const TourCard = styled.div`
-  display: flex;
-  flex-direction: column;
+const TourContainer = styled.div`
+  /* display: flex;
   justify-content: center;
-  align-items: center;
-  gap: 2.5rem;
-  max-width: 35rem;
+  flex-wrap: wrap;
+  padding-top: 2rem;
+  gap: 3rem; */
+  padding-top: 2rem;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  place-items: center;
+  grid-gap: 3rem;
 `;
 
 function Tours() {
-  const TourContainer = styled.div`
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    padding-top: 2rem;
-    gap: 3rem;
-  `;
+  const { data: tours = {}, isPending: isFetching } = useFetchTours();
+
+  if (isFetching) console.log("data is fetching....");
 
   return (
     <Container>
       <PageHeader />
       <TourContainer>
-        <TourCard>
-          <TourHeader />
-          <TourSummary />
-          <TourFooter />
-        </TourCard>
-
-        <TourCard>
-          <TourHeader />
-          <TourSummary />
-          <TourFooter />
-        </TourCard>
-
-        <TourCard>
-          <TourHeader />
-          <TourSummary />
-          <TourFooter />
-        </TourCard>
-
-        <TourCard>
-          <TourHeader />
-          <TourSummary />
-          <TourFooter />
-        </TourCard>
+        {tours?.data?.doc.map((tour, i) => (
+          <TourCard tour={tour} key={i} />
+        ))}
       </TourContainer>
       <Pagination />
     </Container>

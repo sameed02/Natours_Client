@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import tourImg from "../../assets/img/nat-6.jpg";
 
 const ImgContainer = styled.div`
   width: 100%;
@@ -9,14 +8,14 @@ const ImgContainer = styled.div`
       var(--light-gradient-light-green),
       var(--light-gradient-dark-green)
     ),
-    url(${tourImg});
-  background-size: contain;
+    url(${(props) => props.$imageurl});
+  background-size: cover;
   background-position: top;
   clip-path: polygon(0 0, 100% 0%, 100% 83%, 0% 98%);
 `;
 
-function TourHeader() {
-  return <ImgContainer />;
+function TourHeader({ imageurl }) {
+  return <ImgContainer $imageurl={`/tourCover/${imageurl}`} />;
 }
 
 export default TourHeader;
