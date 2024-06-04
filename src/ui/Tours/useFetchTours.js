@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { getTours } from "../../services/apiTours.js";
 
-function useFetchTours(sort) {
+function useFetchTours(sort, page) {
   const { data, isPending, error } = useQuery({
-    queryKey: ["tours", sort],
-    queryFn: () => getTours(sort),
+    queryKey: ["tours", sort, page],
+    queryFn: async () => await getTours(sort, page),
   });
   return { data, isPending, error };
 }

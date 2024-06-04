@@ -18,21 +18,25 @@ const TourContainer = styled.div`
   flex-wrap: wrap;
   padding-top: 2rem;
   gap: 3rem; */
-  padding-top: 2rem;
+  padding: 2rem 8rem 0 8rem;
   width: 100%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   place-items: center;
-  grid-gap: 3rem;
+  grid-gap: 5rem;
 `;
 
 function Tours() {
   const [searchParams] = useSearchParams();
   const sort = searchParams.get("sort") || "price"; // price low to high
 
-  const { data: tours = {}, isPending: isFetching } = useFetchTours(sort);
+  const page = searchParams.get("page") || 1; // price low to high
+
+  const { data: tours = {}, isPending: isFetching } = useFetchTours(sort, page);
 
   if (isFetching) console.log("data is fetching....");
+
+  const docNum = tours.totalDoc;
 
   return (
     <Container>
@@ -42,7 +46,7 @@ function Tours() {
           <TourCard tour={tour} key={i} />
         ))}
       </TourContainer>
-      <Pagination />
+      <Pagination docNum={docNum} />
     </Container>
   );
 }

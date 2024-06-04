@@ -10,7 +10,7 @@ const StyledTourCard = styled.div`
   justify-content: center;
   align-items: center;
   gap: 2.5rem;
-  max-width: 35rem;
+  width: 37rem;
 `;
 
 function TourCard({ tour }) {
@@ -28,7 +28,6 @@ function TourCard({ tour }) {
     duration,
     imageCover: tourCover,
   } = tour;
-  console.log(tourCover);
 
   // converting date format from 2021-04-25T09:00:00.000Z to MMMM yyyy
   // Parse the date string into a Date object

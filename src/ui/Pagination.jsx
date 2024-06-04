@@ -1,3 +1,4 @@
+import { useSearchParams } from "react-router-dom";
 import styled from "styled-components";
 
 const StyledPagination = styled.div`
@@ -30,17 +31,49 @@ const PaginationBtn = styled.button`
   }
 `;
 
-function Pagination() {
+function Pagination({ docNum }) {
+  const LIMIT = 3;
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const pageCount = docNum / LIMIT;
+
+  const currentPage = !searchParams.get("page")
+    ? 1
+    : Number(searchParams.get("page"));
+
+  const prevPage = () => {
+    console.log(currentPage);
+    const next = currentPage === pageCount ? currentPage : currentPage + 1;
+    setSearchParams((searchParams) => {
+      searchParams.set("page", next);
+      return searchParams;
+    });
+  };
+  const nextPage = () => {
+    const prev = currentPage === 1 ? currentPage : currentPage - 1;
+    setSearchParams((searchParams) => {
+      searchParams.set("page", prev);
+      return searchParams;
+    });
+  };
+
   return (
     <StyledPagination>
       <p>
-        Showing <strong>1</strong> to <strong>10</strong> of <strong>24</strong>{" "}
-        results
+        Showing <strong>{(currentPage - 1) * pageCount + 1}</strong> to{" "}
+        <strong>
+          {currentPage === pageCount ? docNum : currentPage * pageCount}
+        </strong>{" "}
+        of <strong>{docNum}</strong> results
       </p>
 
       <PaginationBtnContaier>
-        <PaginationBtn>Prev</PaginationBtn>
-        <PaginationBtn>Next</PaginationBtn>
+        <PaginationBtn onClick={nextPage} disabled={currentPage === 1}>
+          Prev
+        </PaginationBtn>
+        <PaginationBtn onClick={prevPage} disabled={currentPage === pageCount}>
+          Next
+        </PaginationBtn>
       </PaginationBtnContaier>
     </StyledPagination>
   );
