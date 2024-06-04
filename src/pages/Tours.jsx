@@ -3,6 +3,7 @@ import Pagination from "../ui/Pagination.jsx";
 import PageHeader from "../ui/PageHeader.jsx";
 import useFetchTours from "../ui/Tours/useFetchTours.js";
 import TourCard from "../ui/Tours/TourCard.jsx";
+import { useSearchParams } from "react-router-dom";
 
 const Container = styled.div`
   display: flex;
@@ -26,7 +27,10 @@ const TourContainer = styled.div`
 `;
 
 function Tours() {
-  const { data: tours = {}, isPending: isFetching } = useFetchTours();
+  const [searchParams] = useSearchParams();
+  const sort = searchParams.get("sort") || "price"; // price low to high
+
+  const { data: tours = {}, isPending: isFetching } = useFetchTours(sort);
 
   if (isFetching) console.log("data is fetching....");
 

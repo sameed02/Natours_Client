@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import styled from "styled-components";
 
 const PageContainer = styled.div`
@@ -24,19 +25,26 @@ const Select = styled.select`
 const Option = styled.option``;
 
 function PageHeader() {
-  const [sortBy, setSortBy] = useState("priceLow");
+  const [sortBy, setSortBy] = useState("price");
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const handleSortChange = (e) => {
     setSortBy(e.target.value);
   };
+
+  useEffect(() => {
+    searchParams.set("sort", sortBy);
+    setSearchParams(searchParams);
+  }, [sortBy, searchParams, setSearchParams]);
+
   return (
     <PageContainer>
       <h1>All Tours</h1>
       <Select value={sortBy} onChange={handleSortChange}>
-        <Option value="priceLow">Sort by Price (low first)</Option>
-        <Option value="priceHigh">Sort by Price (high first)</Option>
-        <Option value="rating">Sort by Rating (high first)</Option>
-        <Option value="difficulty">Sort by Difficulty (easy first)</Option>
+        <Option value="price">Sort by Price (low first)</Option>
+        <Option value="-price">Sort by Price (high first)</Option>
+        <Option value="-ratingsAverage">Sort by Rating (high first)</Option>
+        <Option value="ratingsAverage">Sort by Rating (low first)</Option>
       </Select>
     </PageContainer>
   );
