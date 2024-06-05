@@ -42,7 +42,6 @@ function Pagination({ docNum }) {
     : Number(searchParams.get("page"));
 
   const prevPage = () => {
-    console.log(currentPage);
     const next = currentPage === pageCount ? currentPage : currentPage + 1;
     setSearchParams((searchParams) => {
       searchParams.set("page", next);

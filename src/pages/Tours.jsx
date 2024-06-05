@@ -36,7 +36,7 @@ function Tours() {
 
   if (isFetching) console.log("data is fetching....");
 
-  const docNum = tours.totalDoc;
+  const docNum = tours.totalDoc || 0;
 
   return (
     <Container>
