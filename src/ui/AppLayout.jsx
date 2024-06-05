@@ -3,6 +3,7 @@ import Header from "./Header/Header.jsx";
 import Sidebar from "./SideNav/Sidebar.jsx";
 import Hero from "./Hero.jsx";
 import styled from "styled-components";
+import Login from "../authorization/Login.jsx";
 
 const StyledContainer = styled.div`
   margin: 0 auto;
@@ -30,25 +31,31 @@ const StyledOutletContainer = styled.div`
 function AppLayout() {
   const location = useLocation();
 
-  // Check if the current path is '/'
   const isHomePage = location.pathname === "/";
+  const isLoginPage = location.pathname === "/login";
 
   return (
     <>
       {isHomePage && <Hero />}
 
       {!isHomePage && (
-        <StyledContainer>
-          <Header />
+        <>
+          {isLoginPage && <Login />}
 
-          <StyledMain>
-            <Sidebar />
+          {!isLoginPage && (
+            <StyledContainer>
+              <Header />
 
-            <StyledOutletContainer>
-              <Outlet />
-            </StyledOutletContainer>
-          </StyledMain>
-        </StyledContainer>
+              <StyledMain>
+                <Sidebar />
+
+                <StyledOutletContainer>
+                  <Outlet />
+                </StyledOutletContainer>
+              </StyledMain>
+            </StyledContainer>
+          )}
+        </>
       )}
     </>
   );

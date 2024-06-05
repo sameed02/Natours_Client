@@ -6,6 +6,7 @@ import Hero from "./ui/Hero.jsx";
 import Settings from "./pages/Settings.jsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import Login from "./authorization/Login.jsx";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,11 @@ const router = createBrowserRouter([
       {
         path: "/settings",
         element: <Settings />,
+      },
+
+      {
+        path: "/login",
+        element: <Login />,
       },
     ],
   },
