@@ -168,7 +168,7 @@ function Hero() {
           <HeroHeadingSub>is where life happens</HeroHeadingSub>
         </HeroHeading>
 
-        <StyledLink to="/tours">Discover our tours</StyledLink>
+        <StyledLink to="/login">Discover our tours</StyledLink>
       </HeroBox>
     </StyledHero>
   );

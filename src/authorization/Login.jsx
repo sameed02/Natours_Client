@@ -1,4 +1,8 @@
 import styled from "styled-components";
+import { useForm } from "react-hook-form";
+import FormLabel from "../ui/FormLabel.jsx";
+import FormInput from "../ui/FormInput.jsx";
+import FormError from "../ui/FormError.jsx";
 
 const LoginFormContainer = styled.div`
   max-width: 55rem;
@@ -13,7 +17,6 @@ const LoginFormContainer = styled.div`
 const FormHeading = styled.h2`
   font-size: 2.2rem;
   font-weight: 700;
-  text-transform: uppercase;
   background-image: linear-gradient(to right, #7dd56f, #28b487);
   background-clip: text;
   color: transparent;
@@ -30,35 +33,9 @@ const StyledForm = styled.form`
 
 const FormRow = styled.div``;
 
-const FormRowLabel = styled.label`
-  display: block;
-  font-size: 1.6rem;
-  font-weight: 700;
-  margin-bottom: 0.75rem !important;
-`;
-
-const FormRowInput = styled.input`
-  display: block;
-  width: 100%;
-  padding: 1.25rem 1.75rem;
-  font-size: 1.5rem;
-  font-weight: 100;
-  background-color: #f2f2f2;
-  border-radius: 0.4rem;
-  border: none;
-  color: var(--color-grey-3);
-  border-top: 3px solid transparent;
-  border-bottom: 3px solid transparent;
-  transition: all 0.3s;
-
-  &::placeholder {
-    color: #888;
-    font-style: italic;
-  }
-`;
-
 const FormBtn = styled.button`
   font-size: 1.6rem;
+  font-weight: 300;
   padding: 1.4rem 3rem;
   border-radius: 10rem;
   text-transform: uppercase;
@@ -74,18 +51,58 @@ const FormBtn = styled.button`
 `;
 
 function Login() {
+  const { register, formState, handleSubmit } = useForm();
+  const { errors } = formState;
+
+  function submitLoginForm(formData) {
+    const { email, password } = formData;
+    console.log(email, password);
+  }
+
+  function onError(err) {
+    console.log(err);
+  }
+
   return (
     <LoginFormContainer>
-      <FormHeading>login to your account</FormHeading>
-      <StyledForm>
+      <FormHeading>Log in to Natours</FormHeading>
+      <StyledForm noValidate onSubmit={handleSubmit(submitLoginForm, onError)}>
         <FormRow>
-          <FormRowLabel>Email Address</FormRowLabel>
-          <FormRowInput placeholder="your@example.com"></FormRowInput>
+          <FormLabel>Email</FormLabel>
+          <FormInput
+            type="email"
+            placeholder="your@example.com"
+            {...register("email", {
+              required: "This field is required",
+              pattern: {
+                value: /\S+@\S+\.\S+/,
+                message: "Please provide valid email address",
+              },
+            })}
+          />
+          {errors?.email?.message && (
+            <FormError>{errors.email.message}</FormError>
+          )}
         </FormRow>
+
         <FormRow>
-          <FormRowLabel>Password</FormRowLabel>
-          <FormRowInput placeholder="• • • • • • • •"></FormRowInput>
+          <FormLabel>Password (min 8 characters)</FormLabel>
+          <FormInput
+            type="password"
+            placeholder="• • • • • • • •"
+            {...register("password", {
+              required: "This field is required",
+              minLength: {
+                value: 8,
+                message: "Password needs a minimum of 8 characters ",
+              },
+            })}
+          />
+          {errors?.password?.message && (
+            <FormError>{errors.password.message}</FormError>
+          )}
         </FormRow>
+
         <FormBtn>Login</FormBtn>
       </StyledForm>
     </LoginFormContainer>
