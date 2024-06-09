@@ -6,11 +6,17 @@ import Hero from "./ui/Hero.jsx";
 import Settings from "./pages/Settings.jsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import Login from "./authorization/Login.jsx";
+import Login from "./authentication/Login.jsx";
+import ProtectedRoute from "./authentication/protectedRoute.jsx";
+import { AuthProvider } from "./context/authContext.jsx";
 
 const router = createBrowserRouter([
   {
-    element: <AppLayout />,
+    element: (
+      <ProtectedRoute>
+        <AppLayout />
+      </ProtectedRoute>
+    ),
     children: [
       {
         path: "/",
@@ -26,12 +32,11 @@ const router = createBrowserRouter([
         path: "/settings",
         element: <Settings />,
       },
-
-      {
-        path: "/login",
-        element: <Login />,
-      },
     ],
+  },
+  {
+    path: "/login",
+    element: <Login />,
   },
 
   {
@@ -52,7 +57,9 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
-      <RouterProvider router={router} />
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
     </QueryClientProvider>
   );
 }

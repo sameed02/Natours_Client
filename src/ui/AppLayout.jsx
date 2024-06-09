@@ -3,7 +3,7 @@ import Header from "./Header/Header.jsx";
 import Sidebar from "./SideNav/Sidebar.jsx";
 import Hero from "./Hero.jsx";
 import styled from "styled-components";
-import Login from "../authorization/Login.jsx";
+import Login from "../authentication/Login.jsx";
 
 const StyledContainer = styled.div`
   margin: 0 auto;

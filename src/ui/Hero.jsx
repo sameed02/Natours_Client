@@ -2,6 +2,7 @@ import styled, { keyframes } from "styled-components";
 import heroImage from "../assets/img/hero.jpg";
 import logoWhite from "/public/logoWhite.png";
 import { Link } from "react-router-dom";
+import useFetchUser from "../authentication/useFetchUser.js";
 
 /*  -------------- Animations -------------- */
 const moveInLeft = keyframes`
@@ -156,6 +157,8 @@ const StyledLink = styled(Link)`
 `;
 
 function Hero() {
+  const { data: user, isPending } = useFetchUser();
+  if (isPending) console.log("loading...");
   return (
     <StyledHero>
       <ImgContainer>
@@ -168,7 +171,9 @@ function Hero() {
           <HeroHeadingSub>is where life happens</HeroHeadingSub>
         </HeroHeading>
 
-        <StyledLink to="/login">Discover our tours</StyledLink>
+        <StyledLink to={`${user ? "/tours" : "/login"}`}>
+          Discover our tours
+        </StyledLink>
       </HeroBox>
     </StyledHero>
   );

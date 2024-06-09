@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import styled from "styled-components";
 
@@ -25,17 +24,13 @@ const Select = styled.select`
 const Option = styled.option``;
 
 function PageHeader() {
-  const [sortBy, setSortBy] = useState("price");
   const [searchParams, setSearchParams] = useSearchParams();
+  const sortBy = searchParams.get("sortBy") || "";
 
   const handleSortChange = (e) => {
-    setSortBy(e.target.value);
-  };
-
-  useEffect(() => {
-    searchParams.set("sort", sortBy);
+    searchParams.set("sortBy", e.target.value);
     setSearchParams(searchParams);
-  }, [sortBy, searchParams, setSearchParams]);
+  };
 
   return (
     <PageContainer>

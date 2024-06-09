@@ -4,6 +4,8 @@ import FormLabel from "../ui/FormLabel.jsx";
 import FormInput from "../ui/FormInput.jsx";
 import FormError from "../ui/FormError.jsx";
 
+import useAuthenticateLogin from "./useAuthLogin.js";
+
 const LoginFormContainer = styled.div`
   max-width: 55rem;
   margin: 10rem auto;
@@ -54,19 +56,26 @@ function Login() {
   const { register, formState, handleSubmit } = useForm();
   const { errors } = formState;
 
-  function submitLoginForm(formData) {
+  const { mutate: mutateLogin, isPending } = useAuthenticateLogin();
+
+  async function submitLoginForm(formData) {
     const { email, password } = formData;
-    console.log(email, password);
+
+    mutateLogin({ email, password });
   }
 
-  function onError(err) {
+  function formError(err) {
     console.log(err);
   }
 
+  if (isPending) console.log("is logging");
   return (
     <LoginFormContainer>
       <FormHeading>Log in to Natours</FormHeading>
-      <StyledForm noValidate onSubmit={handleSubmit(submitLoginForm, onError)}>
+      <StyledForm
+        noValidate
+        onSubmit={handleSubmit(submitLoginForm, formError)}
+      >
         <FormRow>
           <FormLabel>Email</FormLabel>
           <FormInput
@@ -86,7 +95,7 @@ function Login() {
         </FormRow>
 
         <FormRow>
-          <FormLabel>Password (min 8 characters)</FormLabel>
+          <FormLabel>Password</FormLabel>
           <FormInput
             type="password"
             placeholder="• • • • • • • •"

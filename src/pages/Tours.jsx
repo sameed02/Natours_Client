@@ -28,9 +28,10 @@ const TourContainer = styled.div`
 
 function Tours() {
   const [searchParams] = useSearchParams();
-  const sort = searchParams.get("sort") || "price"; // price low to high
 
-  const page = searchParams.get("page") || 1; // price low to high
+  const sort = searchParams.get("sortBy") || "price"; // price low to high
+
+  const page = searchParams.get("page") || 1;
 
   const { data: tours = {}, isPending: isFetching } = useFetchTours(sort, page);
 

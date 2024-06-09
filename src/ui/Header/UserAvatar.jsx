@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import avatar from "../../assets/img/avatar.jpg";
+import { useAuthProvider } from "../../context/authContext.jsx";
 
 const StyledUserAvatar = styled.div`
   display: flex;
@@ -20,10 +21,12 @@ const Avatar = styled.img`
 `;
 
 function UserAvatar() {
+  const { user } = useAuthProvider();
+
   return (
     <StyledUserAvatar>
       <Avatar src={avatar} alt="user img"></Avatar>
-      <span>Sameed Ahmad</span>
+      <span>{user?.data?.doc?.name}</span>
     </StyledUserAvatar>
   );
 }
