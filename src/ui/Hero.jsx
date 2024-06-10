@@ -157,6 +157,7 @@ const StyledLink = styled(Link)`
 `;
 
 function Hero() {
+  // we are making api call instead of using our context for user because this page is not protected therefore if manually go to "/" route it wont be able to fetch user
   const { data: user, isPending } = useFetchUser();
   if (isPending) console.log("loading...");
   return (

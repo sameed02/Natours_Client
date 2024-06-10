@@ -19,11 +19,6 @@ const router = createBrowserRouter([
     ),
     children: [
       {
-        path: "/",
-        element: <Hero />,
-      },
-
-      {
         path: "/tours",
         element: <Tours />,
       },
@@ -34,6 +29,12 @@ const router = createBrowserRouter([
       },
     ],
   },
+
+  {
+    path: "/",
+    element: <Hero />,
+  },
+
   {
     path: "/login",
     element: <Login />,
