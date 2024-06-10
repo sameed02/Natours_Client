@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Logo from "./Logo.jsx";
 import UserAvatar from "./UserAvatar.jsx";
+import Logout from "../../authentication/Logout.jsx";
 
 const StyledHeader = styled.header`
   height: 8rem;
@@ -12,11 +13,22 @@ const StyledHeader = styled.header`
   align-items: center;
 `;
 
+const UserBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 3rem;
+`;
+
 function Header() {
   return (
     <StyledHeader>
       <Logo />
-      <UserAvatar />
+
+      <UserBox>
+        <UserAvatar />
+        <Logout />
+      </UserBox>
     </StyledHeader>
   );
 }

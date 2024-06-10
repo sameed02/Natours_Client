@@ -32,4 +32,15 @@ async function fetchUser() {
   }
 }
 
-export { LoginUser, fetchUser };
+async function logoutUser() {
+  try {
+    const res = await fetch(`http://localhost:3000/api/v1/users/logout`, {
+      credentials: "include",
+    });
+
+    return res.json();
+  } catch (err) {
+    throw new Error(err);
+  }
+}
+export { LoginUser, fetchUser, logoutUser };
