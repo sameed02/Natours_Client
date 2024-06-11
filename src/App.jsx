@@ -9,6 +9,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import Login from "./authentication/Login.jsx";
 import ProtectedRoute from "./authentication/protectedRoute.jsx";
 import { AuthProvider } from "./context/authContext.jsx";
+import TourDetails from "./ui/Tours/TourDetails.jsx";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,11 @@ const router = createBrowserRouter([
       {
         path: "/tours",
         element: <Tours />,
+      },
+
+      {
+        path: "/tours/:tourId",
+        element: <TourDetails />,
       },
 
       {

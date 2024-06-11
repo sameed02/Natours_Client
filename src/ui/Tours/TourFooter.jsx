@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const StyledFooter = styled.div`
@@ -35,7 +35,8 @@ const FooterBtn = styled(Link)`
   }
 `;
 
-function TourFooter({ price, ratingsAverage, ratingsQuantity }) {
+function TourFooter({ price, ratingsAverage, ratingsQuantity, TourId }) {
+  const navigate = useNavigate();
   return (
     <StyledFooter>
       <FooterDetails>
@@ -46,7 +47,9 @@ function TourFooter({ price, ratingsAverage, ratingsQuantity }) {
           <strong>{ratingsAverage}</strong> rating ({ratingsQuantity})
         </p>
       </FooterDetails>
-      <FooterBtn>Details</FooterBtn>
+      <FooterBtn onClick={() => navigate(`/tours/${TourId}`)}>
+        Details
+      </FooterBtn>
     </StyledFooter>
   );
 }

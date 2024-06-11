@@ -16,6 +16,7 @@ const StyledTourCard = styled.div`
 function TourCard({ tour }) {
   const {
     name,
+    id: TourId,
     summary,
     startLocation: { description },
     startDates,
@@ -52,6 +53,7 @@ function TourCard({ tour }) {
         ratingsAverage={ratingsAverage}
         ratingsQuantity={ratingsQuantity}
         price={price}
+        TourId={TourId}
       />
     </StyledTourCard>
   );

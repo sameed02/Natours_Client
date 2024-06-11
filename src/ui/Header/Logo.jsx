@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import logoGreen2x from "/public/logoGreen2x.png";
+import logoGreen2x from "/logoGreen2x.png";
 import { Link } from "react-router-dom";
 
 const StyledLink = styled(Link)`
