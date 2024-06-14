@@ -13,9 +13,10 @@ import {
   HiOutlineTrendingUp,
   HiOutlineUser,
 } from "react-icons/hi";
+import { format, parseISO } from "date-fns";
 
 const TourDetailsBox = styled.div`
-  padding: 2rem 0 0 2rem;
+  /* padding: 2rem 0 0 2rem; */
   margin: 0 -1rem;
   overflow-y: auto;
 `;
@@ -44,7 +45,7 @@ const Tourdescription = styled.div`
 
 const TourOverview = styled.div`
   padding: 25rem 8rem;
-  background-color: #f7f7f7;
+  background-color: #f2fbf1;
   flex-grow: 1;
   flex-basis: 0;
   display: flex;
@@ -68,6 +69,8 @@ const OverviewStat = styled.div`
   }
 
   & div span {
+    font-size: 2rem;
+    font-weight: 300;
     margin-left: 1rem;
   }
 `;
@@ -93,6 +96,13 @@ function TourDetails() {
 
   /* (tour?.name ?? "") is same as const name = tour?.name || ""; The ?? is called "nullish coalescing operator." It allows you to provide a default value when dealing with potentially null or undefined values. It works similarly to the || operator */
   const [first, second, third] = (tour?.name ?? "").split(" ");
+  const date = tour?.startDates;
+  console.log(date?.[0]);
+
+  const firstDateISO = date?.[0] ? parseISO(date[0]) : null;
+  const startDate = firstDateISO
+    ? format(firstDateISO, "MMMM yyyy")
+    : "No date available";
 
   return (
     <TourDetailsBox>
@@ -122,40 +132,27 @@ function TourDetails() {
           <OverviewStat>
             <div>
               <HiOutlineUser />
-              People <span>15</span>
+              People <span>{tour?.maxGroupSize}</span>
             </div>
             <div>
               <HiOutlineStar />
-              Rating <span>4.8/5</span>
+              Rating <span>{tour?.ratingsAverage}/5</span>
             </div>
             <div>
               <HiOutlineTrendingUp />
-              Difficulty <span>medium</span>
+              Difficulty <span>{tour?.difficulty}</span>
             </div>
             <div>
               <HiOutlineCalendar />
-              Next Date <span>June 2021</span>
+              Next Date <span>{startDate}</span>
             </div>
           </OverviewStat>
         </TourOverview>
 
         <TourOverviewDetail>
-          <h2>About the Sea Explorer</h2>
-          <p>
-            Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-            labore et dolore magna aliqua. Excepteur sint occaecat cupidatat non
-            proident, sunt in culpa qui officia deserunt mollit anim id est
-            laborum.
-          </p>
-          <p>
-            Irure dolor in reprehenderit in voluptate velit esse cillum dolore
-            eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-            proident, sunt in culpa qui officia deserunt mollit anim id est
-            laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatur.
-          </p>
+          <h2>About {tour?.name}</h2>
+          <p>{tour?.description}</p>
+          <p></p>
         </TourOverviewDetail>
       </Tourdescription>
     </TourDetailsBox>
