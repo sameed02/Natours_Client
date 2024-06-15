@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import { useFetchTour } from "./useFetchTour.js";
+import { useFetchTour } from "../ui/Tours/useFetchTour.js";
 import {
   HeadingDescription,
   TourHeadingDetail,
   TourImgDetail,
-} from "./TourImgDetail.jsx";
+} from "../ui/Tours/TourImgDetail.jsx";
 import {
   HiOutlineCalendar,
   HiOutlineClock,

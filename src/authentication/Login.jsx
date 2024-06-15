@@ -5,27 +5,8 @@ import FormInput from "../ui/FormInput.jsx";
 import FormError from "../ui/FormError.jsx";
 
 import useAuthenticateLogin from "./useAuthLogin.js";
-
-const LoginFormContainer = styled.div`
-  max-width: 55rem;
-  margin: 10rem auto;
-  background-color: var(--color-white);
-  color: var(--color-grey-2);
-  box-shadow: 0 2.5rem 8rem 2rem rgba(0, 0, 0, 0.06);
-  padding: 5rem 7rem;
-  border-radius: 0.5rem;
-`;
-
-const FormHeading = styled.h2`
-  font-size: 2.2rem;
-  font-weight: 700;
-  background-image: linear-gradient(to right, #7dd56f, #28b487);
-  background-clip: text;
-  color: transparent;
-  letter-spacing: 0.1rem;
-  line-height: 1.3;
-  margin-bottom: 3.5rem !important;
-`;
+import { FormHeading } from "../ui/FormHeading.jsx";
+import FormContainer from "../ui/FormContainer.jsx";
 
 const StyledForm = styled.form`
   & :not(:last-child) {
@@ -70,8 +51,8 @@ function Login() {
 
   if (isPending) console.log("is logging");
   return (
-    <LoginFormContainer>
-      <FormHeading>Log in to Natours</FormHeading>
+    <FormContainer>
+      <FormHeading $fontSize="3rem">Log in to Natours</FormHeading>
       <StyledForm
         noValidate
         onSubmit={handleSubmit(submitLoginForm, formError)}
@@ -114,7 +95,7 @@ function Login() {
 
         <FormBtn>Login</FormBtn>
       </StyledForm>
-    </LoginFormContainer>
+    </FormContainer>
   );
 }
 
