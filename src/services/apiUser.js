@@ -58,3 +58,35 @@ export async function updateUser({ username, email, fileName, file }) {
     throw new Error(err.message);
   }
 }
+
+export async function updatePassword({
+  password,
+  newPassword,
+  newPasswordConfirm,
+}) {
+  try {
+    console.log({
+      password,
+      newPassword,
+      newPasswordConfirm,
+    });
+
+    const res = await fetch(
+      `http://localhost:3000/api/v1/users/updatePassword`,
+      {
+        method: "PATCH",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ password, newPassword, newPasswordConfirm }),
+      }
+    );
+
+    if (!res.ok) {
+      throw new Error("password could not be updated");
+    }
+  } catch (err) {
+    throw new Error(err.message);
+  }
+}

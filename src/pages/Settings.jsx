@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import FormError from "../ui/FormError.jsx";
 import { useUpdateUser } from "./useUpdateUser.js";
 import { useAuthProvider } from "../context/authContext.jsx";
+import { useUpdatePassword } from "../authentication/useUpdatePassword.js";
 
 const StyledForm = styled.form`
   & :not(:last-child) {
@@ -66,11 +67,22 @@ const PassBtn = styled.div`
 `;
 
 function Settings() {
-  const { register, formState, handleSubmit, reset } = useForm();
+  const { register, formState, handleSubmit, reset, getValues } = useForm({
+    defaultValues: {
+      username: "",
+      email: "",
+      image: null,
+      password: "",
+      newPassword: "",
+      newPasswordConfirm: "",
+    },
+  });
   const { errors } = formState;
 
   const { user } = useAuthProvider();
   const { mutate: mutateUserData, isPending } = useUpdateUser();
+  const { mutate: mutatePassword, isPending: isUpdatingPassword } =
+    useUpdatePassword();
 
   async function updateUserDetails(userData) {
     let { username, email, image } = userData;
@@ -103,11 +115,23 @@ function Settings() {
     }
   }
 
+  async function updateUserPassword(data) {
+    const { password, newPassword, newPasswordConfirm, ...other } = data;
+    mutatePassword(
+      { password, newPassword, newPasswordConfirm },
+      {
+        onSettled: () => {
+          reset();
+        },
+      }
+    );
+  }
+
   function formError(err) {
     console.log(err);
   }
 
-  if (isPending) console.log("updating user....");
+  if (isPending || isUpdatingPassword) console.log("updating user....");
 
   return (
     <FormContainer
@@ -161,26 +185,52 @@ function Settings() {
         </UploadPhoto>
       </StyledForm>
 
+      {/* ---------- update password form  ---------- */}
       <Line>&nbsp;</Line>
       <FormHeading $fontSize="3rem">Password Change</FormHeading>
-      <StyledForm noValidate>
+      <StyledForm
+        noValidate
+        onSubmit={handleSubmit(updateUserPassword, formError)}
+      >
         <FormLabel>Current password</FormLabel>
         <FormInput
           $width="60rem"
           type="password"
           placeholder="• • • • • • • •"
-        />
-        <FormLabel>Confirm password</FormLabel>
-        <FormInput
-          $width="60rem"
-          type="password"
-          placeholder="• • • • • • • •"
+          {...register("password", {
+            required: "This field is required",
+            minLength: {
+              value: 8,
+              message: "Password needs a minimum of 8 characters ",
+            },
+          })}
         />
         <FormLabel>New password</FormLabel>
         <FormInput
           $width="60rem"
           type="password"
           placeholder="• • • • • • • •"
+          {...register("newPassword", {
+            required: "This field is required",
+            minLength: {
+              value: 8,
+              message: "Password needs a minimum of 8 characters ",
+            },
+          })}
+        />
+        <FormLabel>Confirm password</FormLabel>
+        <FormInput
+          $width="60rem"
+          type="password"
+          placeholder="• • • • • • • •"
+          {...register("newPasswordConfirm", {
+            required: "This field is required",
+            validate: (value) => {
+              return (
+                value === getValues().newPassword || "Passwords need to match"
+              );
+            },
+          })}
         />
 
         <PassBtn>
