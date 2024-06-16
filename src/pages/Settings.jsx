@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import avatar from "../assets/img/avatar.jpg";
 
 import FormContainer from "../ui/FormContainer.jsx";
 import { FormHeading } from "../ui/FormHeading.jsx";
@@ -7,7 +6,8 @@ import FormLabel from "../ui/FormLabel.jsx";
 import FormInput from "../ui/FormInput.jsx";
 import { useForm } from "react-hook-form";
 import FormError from "../ui/FormError.jsx";
-import { uploadImage } from "../services/apiUser.js";
+import { useUpdateUser } from "./useUpdateUser.js";
+import { useAuthProvider } from "../context/authContext.jsx";
 
 const StyledForm = styled.form`
   & :not(:last-child) {
@@ -28,35 +28,7 @@ const Img = styled.img`
   border-radius: 50%;
 `;
 
-const FileInput = styled.input`
-  margin: 0;
-  padding: 0;
-  box-sizing: inherit;
-  width: 0.1px;
-  height: 0.1px;
-  opacity: 0;
-  overflow: hidden;
-  position: absolute;
-  z-index: -1;
-`;
-
-const UploadLabel = styled.label`
-  line-height: 1.6;
-  font-weight: 300;
-  font-size: 1.6rem;
-  margin: 0;
-  color: #55c57a;
-  text-decoration: none;
-  border-bottom: 1px solid #55c57a;
-  padding: 3px;
-  transition: all 0.2s;
-  cursor: pointer;
-
-  &:hover {
-    color: var(--color-white);
-    background-color: var(--color-medium-green);
-  }
-`;
+const FileInput = styled.input``;
 
 const FormBtn = styled.button`
   margin-left: auto;
@@ -94,19 +66,48 @@ const PassBtn = styled.div`
 `;
 
 function Settings() {
-  const { register, formState, handleSubmit } = useForm();
+  const { register, formState, handleSubmit, reset } = useForm();
   const { errors } = formState;
 
-  async function updateUser(userData) {
-    const { username, email, image } = userData;
-    const imgUrl = await uploadImage(image[0].name, image[0]);
+  const { user } = useAuthProvider();
+  const { mutate: mutateUserData, isPending } = useUpdateUser();
 
-    console.log(imgUrl);
+  async function updateUserDetails(userData) {
+    let { username, email, image } = userData;
+
+    if (!username) username = user.name;
+    if (!email) email = user.email;
+
+    if (!image[0]) {
+      console.log("image doesnt exist");
+      mutateUserData(
+        {
+          username,
+          email,
+        },
+        { onSettled: () => reset() }
+      );
+    }
+
+    if (image[0]) {
+      console.log("image exists");
+      mutateUserData(
+        {
+          username,
+          email,
+          fileName: image[0].name,
+          file: image[0],
+        },
+        { onSettled: () => reset() }
+      );
+    }
   }
 
   function formError(err) {
     console.log(err);
   }
+
+  if (isPending) console.log("updating user....");
 
   return (
     <FormContainer
@@ -116,7 +117,10 @@ function Settings() {
       $boxShadow="none"
     >
       <FormHeading $fontSize="3rem">Your Account Settings</FormHeading>
-      <StyledForm noValidate onSubmit={handleSubmit(updateUser, formError)}>
+      <StyledForm
+        noValidate
+        onSubmit={handleSubmit(updateUserDetails, formError)}
+      >
         <FormLabel>Name</FormLabel>
         <FormInput
           $width="60rem"
@@ -145,14 +149,13 @@ function Settings() {
         )}
 
         <UploadPhoto>
-          <Img src={avatar} />
+          <Img src={user?.data?.doc?.photo} />
           <FileInput
             type="file"
             accept="image/*"
             id="file-upload"
             {...register("image")}
           />
-          <UploadLabel htmlFor="file-upload">Choose new photo</UploadLabel>
 
           <FormBtn>Save Settings</FormBtn>
         </UploadPhoto>
