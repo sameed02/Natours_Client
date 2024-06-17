@@ -117,6 +117,7 @@ function Settings() {
 
   async function updateUserPassword(data) {
     const { password, newPassword, newPasswordConfirm, ...other } = data;
+    console.log(other);
     mutatePassword(
       { password, newPassword, newPasswordConfirm },
       {
