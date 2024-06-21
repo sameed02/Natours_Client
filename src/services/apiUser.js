@@ -22,20 +22,13 @@ export async function uploadImage(fileName, file) {
 export async function updateUser({ username, email, fileName, file }) {
   let imgUrl;
   try {
-    if (!username && !email && !fileName && !file) {
-      throw new Error("choose atleast one field to update");
-    }
-
     if (fileName && file) {
       imgUrl = await uploadImage(fileName, file);
     }
 
-    if (!fileName && !username) {
-      return imgUrl;
-    }
-
     // Create the body object dynamically
     const body = { name: username, email };
+
     if (imgUrl) {
       body.photo = imgUrl;
     }

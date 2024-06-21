@@ -1,6 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import heroImage from "../assets/img/hero.jpg";
-import logoWhite from "/public/logoWhite.png";
+import logoWhite from "/logoWhite.png";
 import { Link } from "react-router-dom";
 import useFetchUser from "../authentication/useFetchUser.js";
 
