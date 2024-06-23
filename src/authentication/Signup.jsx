@@ -6,6 +6,7 @@ import { FormHeading } from "../ui/FormHeading.jsx";
 import FormLabel from "../ui/FormLabel.jsx";
 import FormInput from "../ui/FormInput.jsx";
 import FormError from "../ui/FormError.jsx";
+import { NavLink } from "react-router-dom";
 
 const StyledForm = styled.form`
   & :not(:last-child) {
@@ -29,6 +30,22 @@ const FormBtn = styled.button`
 
   &:hover {
     background-color: var(--color-dark-green);
+  }
+`;
+
+const Link = styled(NavLink)`
+  &:link,
+  &:visited {
+    display: block;
+    text-decoration: none;
+    letter-spacing: 0.1rem;
+    font-weight: 700;
+    color: var(--color-medium-green);
+  }
+
+  &:hover {
+    text-decoration: underline;
+    color: var(--color-dark-green);
   }
 `;
 
@@ -125,7 +142,7 @@ function Signup() {
             <FormError>{errors.passwordConfirm.message}</FormError>
           )}
         </FormRow>
-
+        <Link to="/login">{"already have natours account?"}</Link>
         <FormBtn>Signup</FormBtn>
       </StyledForm>
     </FormContainer>
