@@ -4,6 +4,9 @@ import UserAvatar from "./UserAvatar.jsx";
 import Logout from "../../authentication/Logout.jsx";
 
 const StyledHeader = styled.header`
+  grid-column: 1/3;
+
+  ////////////////////
   height: 8rem;
   background-color: var(--color-grey-3);
   color: var(--color-grey-1);
@@ -23,7 +26,7 @@ const UserBox = styled.div`
 function Header() {
   return (
     <StyledHeader>
-      <Logo />
+      {<Logo />}
 
       <UserBox>
         <UserAvatar />

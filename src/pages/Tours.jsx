@@ -9,14 +9,10 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
+  background-color: var(--color-grey-1);
 `;
 
 const TourContainer = styled.div`
-  /* display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  padding-top: 2rem;
-  gap: 3rem; */
   padding: 2rem 8rem 0 8rem;
   width: 100%;
   display: grid;

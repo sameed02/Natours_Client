@@ -11,6 +11,8 @@ const StyledTourCard = styled.div`
   align-items: center;
   gap: 2.5rem;
   width: 37rem;
+  background-color: var(--color-white);
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.005);
 `;
 
 function TourCard({ tour }) {

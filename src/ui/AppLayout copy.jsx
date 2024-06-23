@@ -6,15 +6,26 @@ import styled from "styled-components";
 import Login from "../authentication/Login.jsx";
 
 const StyledContainer = styled.div`
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
   height: calc(100vh - 6rem);
+`;
 
-  display: grid;
-  grid-template-rows: auto 1fr;
-  grid-template-columns: 30rem 1fr;
+const StyledMain = styled.main`
+  display: flex;
+  flex-grow: 1;
+  min-height: 0;
 `;
 
 const StyledOutletContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-white);
+  flex-grow: 1;
   overflow: auto;
+  /* justify-content: space-between; */
+  padding: 0 1rem;
 `;
 
 function AppLayout() {
@@ -35,11 +46,13 @@ function AppLayout() {
             <StyledContainer>
               <Header />
 
-              <Sidebar />
+              <StyledMain>
+                <Sidebar />
 
-              <StyledOutletContainer>
-                <Outlet />
-              </StyledOutletContainer>
+                <StyledOutletContainer>
+                  <Outlet />
+                </StyledOutletContainer>
+              </StyledMain>
             </StyledContainer>
           )}
         </>

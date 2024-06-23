@@ -16,9 +16,7 @@ import {
 import { format, parseISO } from "date-fns";
 
 const TourDetailsBox = styled.div`
-  /* padding: 2rem 0 0 2rem; */
-  margin: 0 -1rem;
-  overflow-y: auto;
+  margin-left: -1rem;
 `;
 
 const Tourdescription = styled.div`

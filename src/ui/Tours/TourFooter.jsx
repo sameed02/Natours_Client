@@ -2,7 +2,8 @@ import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const StyledFooter = styled.div`
-  background-color: var(--color-grey-1);
+  background-color: #dedede;
+  /* background-color: var(--color-grey-1); */
   width: 100%;
   display: flex;
   justify-content: center;

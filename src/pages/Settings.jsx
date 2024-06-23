@@ -16,18 +16,25 @@ const Line = styled.div`
   background-color: #e0e0e0;
 `;
 
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
 function Settings() {
   return (
-    <FormContainer
-      $height="100vh"
-      $margin="0 auto"
-      $maxWidth={`100vw`}
-      $boxShadow="none"
-    >
-      <UpdateUserForm />
-      <Line>&nbsp;</Line>
-      <UpdateUserPassForm />
-    </FormContainer>
+    <Container>
+      <FormContainer
+        $height="100vh"
+        $margin="0 auto"
+        $maxWidth={`100vw`}
+        $boxShadow="none"
+      >
+        <UpdateUserForm />
+        <Line>&nbsp;</Line>
+        <UpdateUserPassForm />
+      </FormContainer>
+    </Container>
   );
 }
 
