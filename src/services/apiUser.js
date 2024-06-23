@@ -1,10 +1,11 @@
 import supabase from "./supabase.js";
 
 export async function uploadImage(fileName, file) {
+  const imgName = `user-${Math.random()}-${fileName}`;
   try {
     const { data, error } = await supabase.storage
       .from("profile-img")
-      .upload(fileName, file);
+      .upload(imgName, file);
 
     if (error) {
       throw error;
