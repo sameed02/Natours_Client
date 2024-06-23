@@ -43,4 +43,24 @@ async function logoutUser() {
     throw new Error(err);
   }
 }
-export { LoginUser, fetchUser, logoutUser };
+
+async function SignupUser({ name, email, password, passwordConfirm }) {
+  try {
+    const res = await fetch(`http://localhost:3000/api/v1/users/sign-up`, {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ name, email, password, passwordConfirm }),
+    });
+
+    if (!res.ok) {
+      throw new Error("unable to create account !");
+    }
+  } catch (err) {
+    throw new Error(err);
+  }
+}
+
+export { LoginUser, fetchUser, logoutUser, SignupUser };

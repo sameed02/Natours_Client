@@ -10,6 +10,7 @@ import Login from "./authentication/Login.jsx";
 import ProtectedRoute from "./authentication/protectedRoute.jsx";
 import { AuthProvider } from "./context/authContext.jsx";
 import TourDetails from "./pages/TourDetails.jsx";
+import Signup from "./authentication/Signup.jsx";
 
 const router = createBrowserRouter([
   {
@@ -44,6 +45,11 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+  },
+
+  {
+    path: "/signup",
+    element: <Signup />,
   },
 
   {
