@@ -7,7 +7,6 @@ const StyledHeader = styled.header`
   grid-column: 1/3;
 
   ////////////////////
-  height: 8rem;
   background-color: var(--color-grey-3);
   color: var(--color-grey-1);
   padding: 1rem 8rem;
