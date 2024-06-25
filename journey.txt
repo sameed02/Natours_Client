@@ -32,7 +32,7 @@ So, in summary:
 4.Tanstack Query
 5.Date fns package
 6.React-Toastify
-
+.
 
 
 const jwt = require("jsonwebtoken");
