@@ -8,6 +8,7 @@ import useAuthenticateLogin from "./useAuthLogin.js";
 import { FormHeading } from "../ui/FormHeading.jsx";
 import FormContainer from "../ui/FormContainer.jsx";
 import { NavLink } from "react-router-dom";
+import Loader from "../ui/SpinnerFull.jsx";
 
 const StyledForm = styled.form`
   & :not(:last-child) {
@@ -66,7 +67,7 @@ function Login() {
     console.log(err);
   }
 
-  if (isPending) console.log("is logging");
+  if (isPending) return <Loader />;
   return (
     <FormContainer>
       <FormHeading $fontSize="3rem">Log in to Natours</FormHeading>

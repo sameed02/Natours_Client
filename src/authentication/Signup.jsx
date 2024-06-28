@@ -7,6 +7,7 @@ import FormLabel from "../ui/FormLabel.jsx";
 import FormInput from "../ui/FormInput.jsx";
 import FormError from "../ui/FormError.jsx";
 import { NavLink } from "react-router-dom";
+import Loader from "../ui/SpinnerFull.jsx";
 
 const StyledForm = styled.form`
   & :not(:last-child) {
@@ -66,7 +67,7 @@ function Signup() {
     console.log(err);
   }
 
-  if (isPending) console.log("is signing up..");
+  if (isPending) return <Loader />;
   return (
     <FormContainer>
       <FormHeading $fontSize="3rem">Signup to Natours</FormHeading>

@@ -34,7 +34,6 @@ function AppLayout() {
           {!isLoginPage && (
             <StyledContainer>
               <Header />
-
               <Sidebar />
 
               <StyledOutletContainer>

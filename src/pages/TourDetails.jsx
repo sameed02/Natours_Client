@@ -14,6 +14,7 @@ import {
   HiOutlineUser,
 } from "react-icons/hi";
 import { format, parseISO } from "date-fns";
+import Loader from "../ui/SpinnerFull.jsx";
 
 const TourDetailsBox = styled.div`
   margin-left: -1rem;
@@ -86,7 +87,7 @@ function TourDetails() {
   const { data = {}, isPending } = useFetchTour();
 
   if (isPending) {
-    console.log("loading...");
+    return <Loader />;
   }
 
   const tour = data?.data?.doc;

@@ -3,6 +3,7 @@ import Pagination from "../ui/Pagination.jsx";
 import PageHeader from "../ui/PageHeader.jsx";
 import useFetchTours from "../ui/Tours/useFetchTours.js";
 import TourCard from "../ui/Tours/TourCard.jsx";
+import Loader from "../ui/SpinnerFull.jsx";
 
 const Container = styled.div`
   display: flex;
@@ -24,7 +25,7 @@ const TourContainer = styled.div`
 function Tours() {
   const { data: tours = {}, isPending: isFetching } = useFetchTours();
 
-  if (isFetching) console.log("data is fetching....");
+  if (isFetching) return <Loader />;
 
   const docNum = tours.totalDoc || 0;
 
