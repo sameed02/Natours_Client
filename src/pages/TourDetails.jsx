@@ -15,10 +15,9 @@ import {
 } from "react-icons/hi";
 import { format, parseISO } from "date-fns";
 import Loader from "../ui/SpinnerFull.jsx";
+import TourMap from "../ui/Tours/TourMap.jsx";
 
-const TourDetailsBox = styled.div`
-  margin-left: -1rem;
-`;
+const TourDetailsBox = styled.div``;
 
 const Tourdescription = styled.div`
   display: flex;
@@ -154,6 +153,8 @@ function TourDetails() {
           <p></p>
         </TourOverviewDetail>
       </Tourdescription>
+
+      <TourMap locations={tour.locations} />
     </TourDetailsBox>
   );
 }
