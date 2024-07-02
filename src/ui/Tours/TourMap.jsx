@@ -3,10 +3,14 @@ import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import styled from "styled-components";
 
 const Map = styled.div`
+  background-color: #f2fbf1;
+  padding: 2rem;
   height: 40rem;
 `;
 
-const StyledPopup = styled.div``;
+const StyledPopup = styled.div`
+  font-size: 1.5rem;
+`;
 
 function TourMap({ locations }) {
   // lat, lng
@@ -15,8 +19,8 @@ function TourMap({ locations }) {
     <Map>
       <MapContainer
         center={posi}
-        zoom={6}
-        scrollWheelZoom={true}
+        zoom={7}
+        scrollWheelZoom={false}
         style={{ height: "100%" }}
       >
         <TileLayer

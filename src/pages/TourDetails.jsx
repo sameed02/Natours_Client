@@ -16,8 +16,11 @@ import {
 import { format, parseISO } from "date-fns";
 import Loader from "../ui/SpinnerFull.jsx";
 import TourMap from "../ui/Tours/TourMap.jsx";
+import BtnPrimary from "../ui/BtnPrimary.jsx";
 
-const TourDetailsBox = styled.div``;
+const TourDetailsBox = styled.div`
+  background-color: #f2fbf1;
+`;
 
 const Tourdescription = styled.div`
   display: flex;
@@ -43,7 +46,6 @@ const Tourdescription = styled.div`
 
 const TourOverview = styled.div`
   padding: 25rem 8rem;
-  background-color: #f2fbf1;
   flex-grow: 1;
   flex-basis: 0;
   display: flex;
@@ -154,6 +156,7 @@ function TourDetails() {
         </TourOverviewDetail>
       </Tourdescription>
 
+      <BtnPrimary />
       <TourMap locations={tour.locations} />
     </TourDetailsBox>
   );
