@@ -7,7 +7,7 @@ const StyledBtn = styled.button`
 
   text-transform: uppercase;
   padding: 15px 40px;
-  background-color: var(--color-dark-green);
+  background-color: var(--color-medium-green);
   font-size: 2rem;
   color: var(--color-white);
   border-radius: 100px;
@@ -18,6 +18,7 @@ const StyledBtn = styled.button`
   &:hover {
     cursor: pointer;
     transform: translateY(-3px);
+    background-color: var(--color-dark-green);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); // 1st value: offset in X direction, 2nd: offset in Y direction, 3rd: Blur, 4th: color
   }
 `;

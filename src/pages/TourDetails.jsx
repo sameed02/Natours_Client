@@ -16,7 +16,7 @@ import {
 import { format, parseISO } from "date-fns";
 import Loader from "../ui/SpinnerFull.jsx";
 import TourMap from "../ui/Tours/TourMap.jsx";
-import BtnPrimary from "../ui/BtnPrimary.jsx";
+import Checkout from "../ui/Bookings/checkout.jsx";
 
 const TourDetailsBox = styled.div`
   background-color: #f2fbf1;
@@ -156,7 +156,8 @@ function TourDetails() {
         </TourOverviewDetail>
       </Tourdescription>
 
-      <BtnPrimary />
+      <Checkout />
+
       <TourMap locations={tour.locations} />
     </TourDetailsBox>
   );
