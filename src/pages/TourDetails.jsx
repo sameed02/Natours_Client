@@ -156,7 +156,7 @@ function TourDetails() {
         </TourOverviewDetail>
       </Tourdescription>
 
-      <Checkout />
+      <Checkout tourId={tour?._id} />
 
       <TourMap locations={tour.locations} />
     </TourDetailsBox>

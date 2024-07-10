@@ -37,13 +37,15 @@ function loadScript(src) {
   });
 }
 
+/* 
+  usd to inr conversion
 async function getConversionRate() {
   const response = await fetch("https://api.fxratesapi.com/latest");
   const data = await response.json();
   return data.rates.INR;
-}
+} */
 
-function Checkout() {
+function Checkout({ tourId }) {
   async function displayRazorpay() {
     const res = await loadScript(
       "https://checkout.razorpay.com/v1/checkout.js"
@@ -60,6 +62,7 @@ function Checkout() {
     );
 
     const data = await response.json();
+    const order = { ...data?.data?.order, tourId };
     console.log(data?.data?.order);
 
     const responseKey = await fetch(`http://localhost:3000/api/v1/getKey`, {
@@ -77,7 +80,9 @@ function Checkout() {
       image: "/logoGreen2x.png",
       order_id: data?.data?.order?.id,
 
-      callback_url: "http://localhost:3000/api/v1/bookings/paymentVerification",
+      callback_url: `http://localhost:3000/api/v1/bookings/paymentVerification?order=${encodeURIComponent(
+        JSON.stringify(order)
+      )}`,
 
       prefill: {
         name: data?.data?.order?.user?.name,
