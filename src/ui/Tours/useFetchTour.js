@@ -5,7 +5,7 @@ import { getTour } from "../../services/apiTours.js";
 export function useFetchTour() {
   const { tourId } = useParams(); // reading params from url
   const { data, isPending } = useQuery({
-    queryKey: ["booking", tourId],
+    queryKey: ["tour", tourId],
     queryFn: () => getTour(tourId),
     retry: false,
   });

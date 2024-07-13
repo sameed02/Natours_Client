@@ -1,11 +1,31 @@
 import styled from "styled-components";
+import { useFetchBooking } from "./useFetchBooking.js";
+import Loader from "../SpinnerFull.jsx";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   row-gap: 1.5rem;
   padding: 2.5rem;
   overflow-x: auto;
+`;
+
+const Empty = styled.div`
+  font-size: 2rem;
+  padding: 2rem;
+  font-weight: 400;
+
+  & span {
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--color-medium-green);
+  }
+
+  & span:hover {
+    cursor: pointer;
+    color: var(--color-dark-green);
+  }
 `;
 
 const TableHeading = styled.div`
@@ -15,7 +35,7 @@ const TableHeading = styled.div`
   border-bottom: 1px solid #ccc;
   text-align: left;
   padding: 10px;
-  &:nth-child(6) {
+  &:nth-child(5) {
     text-align: center;
   }
 `;
@@ -31,11 +51,11 @@ const Col = styled.div`
   padding: 1rem;
   border-bottom: 1px solid #ccc;
 
-  &:nth-child(6) {
+  &:nth-child(5) {
     text-align: center;
   }
 
-  &:nth-child(6):hover {
+  &:nth-child(5):hover {
     text-decoration: underline;
     cursor: pointer;
     color: var(--color-dark-green);
@@ -43,65 +63,51 @@ const Col = styled.div`
 `;
 
 function Bookings() {
+  const navigate = useNavigate();
   const headings = [
     "Booked Tour",
     "Booking Id",
     "Payment",
-    "Starting Date",
-    "Ending Date",
+    "Duration",
     "Action",
-  ];
-
-  const rows = [
-    [
-      "The Forest Hiker",
-      "pay_212AGFB43LKH",
-      "Paid",
-      "15-07-24",
-      "22-07-24",
-      "Write Tour Review",
-    ],
-    [
-      "The Mountain Climber",
-      "pay_213AGFB44LKH",
-      "Pending",
-      "20-07-24",
-      "27-07-24",
-      "Write Tour Review",
-    ],
-    [
-      "The River Runner",
-      "pay_214AGFB45LKH",
-      "Paid",
-      "25-07-24",
-      "01-08-24",
-      "Write Tour Review",
-    ],
   ];
 
   function handleReviewClick() {
     console.log("clicked");
   }
 
-  return (
-    <Container>
-      {headings.map((heading, i) => (
-        <TableHeading key={i}>{heading}</TableHeading>
-      ))}
+  const { data: { data: bookings = [] } = {}, isPending } = useFetchBooking();
 
-      {rows.map((row, rowIndex) => (
-        <Row key={rowIndex}>
-          {row.map((col, colIndex) => (
-            <Col
-              key={colIndex}
-              onClick={() => colIndex === 5 && handleReviewClick()}
-            >
-              {col}
-            </Col>
+  if (isPending) return <Loader />;
+
+  return (
+    <>
+      {bookings.length > 0 ? (
+        <Container>
+          {headings.map((heading, i) => (
+            <TableHeading key={i}>{heading}</TableHeading>
           ))}
-        </Row>
-      ))}
-    </Container>
+
+          {bookings.map((booking) => {
+            return (
+              <Row key={booking?._id}>
+                <Col>{booking.tour.name}</Col>
+                <Col>{booking.orderId.slice(6)}</Col>
+                <Col>{booking.paid ? "Paid" : "Pending"}</Col>
+                <Col>{booking.tour.duration} Days</Col>
+                <Col onClick={handleReviewClick}>Write Tour Review</Col>
+              </Row>
+            );
+          })}
+        </Container>
+      ) : (
+        <Empty>
+          We couldn&apos;t find any bookings associated with your account.
+          Please explore our available tours to plan your next adventure{" "}
+          <span onClick={() => navigate("/tours")}>here</span>.
+        </Empty>
+      )}
+    </>
   );
 }
 
