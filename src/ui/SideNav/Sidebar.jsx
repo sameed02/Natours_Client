@@ -1,4 +1,4 @@
-import { HiOutlineCog, HiOutlineMap } from "react-icons/hi";
+import { HiOutlineBriefcase, HiOutlineCog, HiOutlineMap } from "react-icons/hi";
 import { NavLink } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 
@@ -113,6 +113,12 @@ function Sidebar() {
         <HiOutlineMap />
         <span>Tours</span>
       </StyledNavLink>
+
+      <StyledNavLink to="/bookings">
+        <HiOutlineBriefcase />
+        <span>bookings</span>
+      </StyledNavLink>
+
       <StyledNavLink to="/settings">
         <HiOutlineCog />
         <span>Settings</span>

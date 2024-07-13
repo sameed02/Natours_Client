@@ -12,6 +12,7 @@ import { AuthProvider } from "./context/authContext.jsx";
 import TourDetails from "./pages/TourDetails.jsx";
 import Signup from "./authentication/Signup.jsx";
 import PaymentVerification from "./ui/Bookings/paymentVerification.jsx";
+import Bookings from "./ui/Bookings/bookings.jsx";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,11 @@ const router = createBrowserRouter([
       {
         path: "/tours/:tourId",
         element: <TourDetails />,
+      },
+
+      {
+        path: "/bookings",
+        element: <Bookings />,
       },
 
       {
