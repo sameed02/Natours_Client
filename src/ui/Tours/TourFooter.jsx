@@ -48,7 +48,12 @@ function TourFooter({ price, ratingsAverage, ratingsQuantity, TourId }) {
           <strong>{ratingsAverage}</strong> rating ({ratingsQuantity})
         </p>
       </FooterDetails>
-      <FooterBtn onClick={() => navigate(`/tours/${TourId}`)}>
+      <FooterBtn
+        onClick={(e) => {
+          e.preventDefault();
+          navigate(`/tours/${TourId}`);
+        }}
+      >
         Details
       </FooterBtn>
     </StyledFooter>

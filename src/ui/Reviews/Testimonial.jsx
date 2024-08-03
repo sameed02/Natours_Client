@@ -46,7 +46,6 @@ const ReviewText = styled.p`
 `;
 
 function Testimonial({ review }) {
-  console.log(review);
   return (
     <Container>
       <Header>

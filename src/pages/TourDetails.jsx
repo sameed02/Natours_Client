@@ -18,6 +18,7 @@ import Loader from "../ui/SpinnerFull.jsx";
 import TourMap from "../ui/Tours/TourMap.jsx";
 import Checkout from "../ui/Bookings/checkout.jsx";
 import Testimonial from "../ui/Reviews/Testimonial.jsx";
+import { useFetchBooking } from "../ui/Bookings/useFetchBooking.js";
 
 const TourDetailsBox = styled.div`
   background-color: #f2fbf1;
@@ -95,9 +96,13 @@ const Testimonials = styled.div`
 `;
 
 function TourDetails() {
+  // custom hook for fetching all the bookings of user
+  const { data: { data: bookings = [] } = {}, isPending: isFetchingBoookings } =
+    useFetchBooking();
+
   const { data = {}, isPending } = useFetchTour();
 
-  if (isPending) {
+  if (isPending || isFetchingBoookings) {
     return <Loader />;
   }
 
@@ -107,7 +112,6 @@ function TourDetails() {
   /* (tour?.name ?? "") is same as const name = tour?.name || ""; The ?? is called "nullish coalescing operator." It allows you to provide a default value when dealing with potentially null or undefined values. It works similarly to the || operator */
   const [first, second, third] = (tour?.name ?? "").split(" ");
   const date = tour?.startDates;
-  console.log(date?.[0]);
 
   const firstDateISO = date?.[0] ? parseISO(date[0]) : null;
   const startDate = firstDateISO
@@ -165,7 +169,8 @@ function TourDetails() {
           <p></p>
         </TourOverviewDetail>
       </Tourdescription>
-      <Checkout tourId={tour?._id} />
+
+      <Checkout tourId={tour?._id} bookings={bookings} />
 
       <TourMap locations={tour.locations} />
 

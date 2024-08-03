@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import { useFetchBooking } from "./useFetchBooking.js";
-import Loader from "../SpinnerFull.jsx";
+import { useFetchBooking } from "../ui/Bookings/useFetchBooking.js";
+import Loader from "../ui/SpinnerFull.jsx";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import ModalWindow from "../../ModalWindow.jsx";
-import { useAuthProvider } from "../../context/authContext.jsx";
-import { getReviewByUser } from "../../services/apiReviews.js";
+import ModalWindow from "../ModalWindow.jsx";
+import { useAuthProvider } from "../context/authContext.jsx";
+import { getReviewByUser } from "../services/apiReviews.js";
 
 const Container = styled.div`
   display: grid;

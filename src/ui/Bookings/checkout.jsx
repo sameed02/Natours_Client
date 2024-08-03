@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import styled from "styled-components";
 
 const StyledBtn = styled.button`
@@ -45,8 +46,15 @@ async function getConversionRate() {
   return data.rates.INR;
 } */
 
-function Checkout({ tourId }) {
+function Checkout({ tourId, bookings }) {
+  const isBooked = bookings.filter((booking) => booking.tour.id === tourId);
+
   async function displayRazorpay() {
+    console.log("tour is ", isBooked);
+    if (isBooked.length > 0) {
+      return toast.error("tour already booked");
+    }
+
     const res = await loadScript(
       "https://checkout.razorpay.com/v1/checkout.js"
     );
