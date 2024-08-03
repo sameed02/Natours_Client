@@ -17,6 +17,7 @@ import { format, parseISO } from "date-fns";
 import Loader from "../ui/SpinnerFull.jsx";
 import TourMap from "../ui/Tours/TourMap.jsx";
 import Checkout from "../ui/Bookings/checkout.jsx";
+import Testimonial from "../ui/Reviews/Testimonial.jsx";
 
 const TourDetailsBox = styled.div`
   background-color: #f2fbf1;
@@ -82,6 +83,15 @@ const TourOverviewDetail = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+
+const Testimonials = styled.div`
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  gap: 1rem;
+  padding: 4rem;
+  overflow: auto;
 `;
 
 function TourDetails() {
@@ -155,10 +165,21 @@ function TourDetails() {
           <p></p>
         </TourOverviewDetail>
       </Tourdescription>
-
       <Checkout tourId={tour?._id} />
 
       <TourMap locations={tour.locations} />
+
+      <Testimonials>
+        {/* {tour?.reviews.map((review) => (
+          <Testimonial key={review.id} review={review} />
+        ))} */}
+        {tour?.reviews
+          .slice()
+          .reverse()
+          .map((review) => (
+            <Testimonial key={review.id} review={review} />
+          ))}
+      </Testimonials>
     </TourDetailsBox>
   );
 }

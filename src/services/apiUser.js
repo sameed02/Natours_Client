@@ -44,7 +44,7 @@ export async function updateUser({ username, email, fileName, file }) {
     });
 
     if (!res.ok) {
-      throw new Error("Use could not be updated, Try Again !");
+      throw new Error("User could not be updated, Try Again !");
     }
     const result = await res.json();
     return { result, imgUrl };

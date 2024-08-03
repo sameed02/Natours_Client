@@ -2,6 +2,10 @@ import styled from "styled-components";
 import { useFetchBooking } from "./useFetchBooking.js";
 import Loader from "../SpinnerFull.jsx";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import ModalWindow from "../../ModalWindow.jsx";
+import { useAuthProvider } from "../../context/authContext.jsx";
+import { getReviewByUser } from "../../services/apiReviews.js";
 
 const Container = styled.div`
   display: grid;
@@ -64,6 +68,14 @@ const Col = styled.div`
 
 function Bookings() {
   const navigate = useNavigate();
+
+  // get currently logged in user
+  const { user } = useAuthProvider();
+  const userId = user?.data?.doc?._id;
+
+  const [showModal, setShowModal] = useState(false);
+  const [reviewData, setReviewData] = useState(null);
+
   const headings = [
     "Booked Tour",
     "Booking Id",
@@ -72,10 +84,13 @@ function Bookings() {
     "Action",
   ];
 
-  function handleReviewClick() {
-    console.log("clicked");
+  async function handleReviewClick(tourId) {
+    const res = await getReviewByUser(tourId, userId);
+    setShowModal(!showModal);
+    setReviewData({ tourId, res });
   }
 
+  // custom hook for fetching all the bookings of user
   const { data: { data: bookings = [] } = {}, isPending } = useFetchBooking();
 
   if (isPending) return <Loader />;
@@ -90,12 +105,14 @@ function Bookings() {
 
           {bookings.map((booking) => {
             return (
-              <Row key={booking?._id}>
+              <Row key={booking._id}>
                 <Col>{booking.tour.name}</Col>
                 <Col>{booking.orderId.slice(6)}</Col>
                 <Col>{booking.paid ? "Paid" : "Pending"}</Col>
                 <Col>{booking.tour.duration} Days</Col>
-                <Col onClick={handleReviewClick}>Write Tour Review</Col>
+                <Col onClick={() => handleReviewClick(booking.tour._id)}>
+                  Write Tour Review
+                </Col>
               </Row>
             );
           })}
@@ -106,6 +123,10 @@ function Bookings() {
           Please explore our available tours to plan your next adventure{" "}
           <span onClick={() => navigate("/tours")}>here</span>.
         </Empty>
+      )}
+
+      {showModal && (
+        <ModalWindow reviewData={reviewData} setShowModal={setShowModal} />
       )}
     </>
   );
