@@ -121,6 +121,11 @@ function ModalWindow({ reviewData, setShowModal }) {
                 value: 10,
                 message: "Review must be at least 10 characters long",
               },
+
+              maxLength: {
+                value: 100,
+                message: "Review must be smaller than 100 characters",
+              },
             })}
           />
           {errors?.review?.message && (
