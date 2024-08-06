@@ -73,10 +73,13 @@ function Checkout({ tourId, bookings }) {
     const data = await response.json();
     const order = { ...data?.data?.order, tourId };
     console.log(data?.data?.order);
-
-    const responseKey = await fetch(`http://localhost:3000/api/v1/getKey`, {
-      credentials: "include",
-    });
+    /* http://localhost:3000/api/v1/getKey */
+    const responseKey = await fetch(
+      `https://natours-client.vercel.app/api/v1/getKey`,
+      {
+        credentials: "include",
+      }
+    );
 
     const key = await responseKey.json();
 
@@ -88,8 +91,8 @@ function Checkout({ tourId, bookings }) {
       description: "Test Transaction",
       image: "/logoGreen2x.png",
       order_id: data?.data?.order?.id,
-
-      callback_url: `http://localhost:3000/api/v1/bookings/paymentVerification?order=${encodeURIComponent(
+      /* http://localhost:3000/api/v1/bookings/paymentVerification?order= */
+      callback_url: `https://natours-client.vercel.app/api/v1/bookings/paymentVerification?order=${encodeURIComponent(
         JSON.stringify(order)
       )}`,
 
