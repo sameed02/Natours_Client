@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "https://natours-bay.vercel.app/$1"
+      "destination": "/"
     },
     { "source": "/(.*)", "destination": "/$1" }
   ]
