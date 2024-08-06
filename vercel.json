@@ -1,12 +1,3 @@
 {
-  "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": "https://natours-bay.vercel.app/$1"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/$1"
-    }
-  ]
+  "rewrites": [{ "source": "/(.*)", "destination": "/" }]
 }
