@@ -74,9 +74,9 @@ function Checkout({ tourId, bookings }) {
     const data = await response.json();
     const order = { ...data?.data?.order, tourId };
     console.log(data?.data?.order);
-    /* http://localhost:3000/api/v1/getKey */
+    /* http://localhost:3000/getKey */
     const responseKey = await fetch(
-      `https://natours-client.vercel.app/api/v1/getKey`,
+      `https://natours-client.vercel.app/getKey`,
       {
         credentials: "include",
       }
