@@ -1,7 +1,8 @@
 const getBooking = async () => {
+  /* http://localhost:3000/api/v1/bookings/bookingByUserId */
   try {
     const response = await fetch(
-      `http://localhost:3000/api/v1/bookings/bookingByUserId`,
+      `https://natours-bay.vercel.app/api/v1/bookings/bookingByUserId`,
       { credentials: "include" }
     );
     if (!response.ok) {

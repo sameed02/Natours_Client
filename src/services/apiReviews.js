@@ -1,9 +1,10 @@
 import { getTour } from "./apiTours.js";
 
 export async function createReviews({ tourId, rating, review }) {
+  /* http://localhost:3000/api/v1/tours/${tourId}/reviews */
   try {
     const res = await fetch(
-      `http://localhost:3000/api/v1/tours/${tourId}/reviews`,
+      `https://natours-bay.vercel.app/api/v1/tours/${tourId}/reviews`,
       {
         method: "POST",
         credentials: "include",
@@ -43,10 +44,11 @@ export async function getReviewByUser(tourId, userId) {
 }
 
 export async function updateReview({ rating, review, reviewId }) {
-  console.log({ rating, review, reviewId });
+  /* http://localhost:3000/api/v1/reviews/${reviewId} */
+
   try {
     const res = await fetch(
-      `http://localhost:3000/api/v1/reviews/${reviewId}`,
+      `https://natours-bay.vercel.app/api/v1/reviews/${reviewId}`,
       {
         method: "PATCH",
         credentials: "include",

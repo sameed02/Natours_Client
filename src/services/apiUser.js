@@ -21,6 +21,7 @@ export async function uploadImage(fileName, file) {
 }
 
 export async function updateUser({ username, email, fileName, file }) {
+  /* http://localhost:3000/api/v1/users/updateMe */
   let imgUrl;
   try {
     if (fileName && file) {
@@ -34,14 +35,17 @@ export async function updateUser({ username, email, fileName, file }) {
       body.photo = imgUrl;
     }
 
-    const res = await fetch(`http://localhost:3000/api/v1/users/updateMe`, {
-      method: "PATCH",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
-    });
+    const res = await fetch(
+      `https://natours-bay.vercel.app/api/v1/users/updateMe`,
+      {
+        method: "PATCH",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      }
+    );
 
     if (!res.ok) {
       throw new Error("User could not be updated, Try Again !");
@@ -58,6 +62,7 @@ export async function updatePassword({
   newPassword,
   newPasswordConfirm,
 }) {
+  /* http://localhost:3000/api/v1/users/updatePassword */
   try {
     console.log({
       password,
@@ -66,7 +71,7 @@ export async function updatePassword({
     });
 
     const res = await fetch(
-      `http://localhost:3000/api/v1/users/updatePassword`,
+      `https://natours-bay.vercel.app/api/v1/users/updatePassword`,
       {
         method: "PATCH",
         credentials: "include",

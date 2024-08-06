@@ -1,7 +1,8 @@
 const getTours = async (sort, page) => {
+  /* http://localhost:3000/api/v1/tours/?sort=${sort}&limit=3&page=${page} */
   try {
     const response = await fetch(
-      `http://localhost:3000/api/v1/tours/?sort=${sort}&limit=3&page=${page}`,
+      `https://natours-bay.vercel.app/api/v1/tours/?sort=${sort}&limit=3&page=${page}`,
       { credentials: "include" }
     );
     if (!response.ok) {
@@ -14,9 +15,10 @@ const getTours = async (sort, page) => {
 };
 
 const getTour = async (tourId) => {
+  /* http://localhost:3000/api/v1/tours/${tourId} */
   try {
     const response = await fetch(
-      `http://localhost:3000/api/v1/tours/${tourId}`,
+      `https://natours-bay.vercel.app/api/v1/tours/${tourId}`,
       { credentials: "include" }
     );
     if (!response.ok) {
