@@ -64,8 +64,9 @@ function Checkout({ tourId, bookings }) {
       return;
     }
 
+    /* http://localhost:3000/api/v1/bookings/checkout/5c88fa8cf4afda39709c2951 */
     const response = await fetch(
-      `http://localhost:3000/api/v1/bookings/checkout/5c88fa8cf4afda39709c2951`,
+      ` https://natours-client.vercel.app/api/v1/bookings/checkout/5c88fa8cf4afda39709c2951`,
       { credentials: "include" }
     );
 
