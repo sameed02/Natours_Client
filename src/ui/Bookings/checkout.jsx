@@ -58,7 +58,7 @@ function Checkout({ tourId, bookings }) {
     const res = await loadScript(
       "https://checkout.razorpay.com/v1/checkout.js"
     );
-
+    console.log(res);
     if (!res) {
       alert("Razropay failed to load!!");
       return;
@@ -69,6 +69,7 @@ function Checkout({ tourId, bookings }) {
       ` https://natours-client.vercel.app/api/v1/bookings/checkout/5c88fa8cf4afda39709c2951`,
       { credentials: "include" }
     );
+    console.log("bookingCheck", response);
 
     const data = await response.json();
     const order = { ...data?.data?.order, tourId };
