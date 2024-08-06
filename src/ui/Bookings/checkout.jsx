@@ -66,7 +66,7 @@ function Checkout({ tourId, bookings }) {
 
     /* http://localhost:3000/api/v1/bookings/checkout/5c88fa8cf4afda39709c2951 */
     const response = await fetch(
-      ` https://natours-client.vercel.app/api/v1/bookings/checkout/5c88fa8cf4afda39709c2951`,
+      ` https://natours-bay.vercel.app/api/v1/bookings/checkout/5c88fa8cf4afda39709c2951`,
       { credentials: "include" }
     );
     console.log("bookingCheck", response);
@@ -75,12 +75,9 @@ function Checkout({ tourId, bookings }) {
     const order = { ...data?.data?.order, tourId };
     console.log(data?.data?.order);
     /* http://localhost:3000/getKey */
-    const responseKey = await fetch(
-      `https://natours-client.vercel.app/getKey`,
-      {
-        credentials: "include",
-      }
-    );
+    const responseKey = await fetch(`https://natours-bay.vercel.app/getKey`, {
+      credentials: "include",
+    });
 
     const key = await responseKey.json();
 
@@ -93,7 +90,7 @@ function Checkout({ tourId, bookings }) {
       image: "/logoGreen2x.png",
       order_id: data?.data?.order?.id,
       /* http://localhost:3000/api/v1/bookings/paymentVerification?order= */
-      callback_url: `https://natours-client.vercel.app/api/v1/bookings/paymentVerification?order=${encodeURIComponent(
+      callback_url: `https://natours-bay.vercel.app/api/v1/bookings/paymentVerification?order=${encodeURIComponent(
         JSON.stringify(order)
       )}`,
 
