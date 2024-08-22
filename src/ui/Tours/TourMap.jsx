@@ -14,6 +14,8 @@ const StyledPopup = styled.div`
 
 function TourMap({ locations }) {
   // lat, lng
+
+  console.log(locations);
   const posi = [locations[0].coordinates[1], locations[0].coordinates[0]];
   return (
     <Map>
@@ -32,7 +34,7 @@ function TourMap({ locations }) {
           return (
             <Marker
               position={[loc.coordinates[1], loc.coordinates[0]]}
-              key={loc.coordinates[1]}
+              key={`${loc.coordinates[1]}-${loc.coordinates[0]}`}
             >
               <Popup>
                 <StyledPopup>{loc.description}</StyledPopup>
